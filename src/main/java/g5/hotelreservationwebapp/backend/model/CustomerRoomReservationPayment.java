@@ -5,28 +5,25 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.proxy.HibernateProxy;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Getter
 @Setter
 @Entity
-@Table(name = "customer_room_reservation")
-public class CustomerRoomReservation extends BaseEntity {
-    @ManyToOne(cascade = CascadeType.ALL, optional = false)
-    @JoinColumn(name = "room_id", nullable = false)
-    private Room room;
+@Table(name = "customer_room_reservation_payment")
+public class CustomerRoomReservationPayment extends BaseEntity {
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "customer_room_reservation_id", nullable = false)
+    private CustomerRoomReservation customerRoomReservation;
 
-    @ManyToOne(cascade = CascadeType.ALL, optional = false)
-    @JoinColumn(name = "customer_id", nullable = false)
-    private Customer customer;
+    @Column(name = "transaction_id", nullable = false)
+    private String transactionId;
 
-    @Column(name = "reservation_start_date", nullable = false)
-    private LocalDateTime reservationStartDate;
+    @Column(name = "is_refund", nullable = false)
+    private Boolean isRefund = false;
 
-    @Column(name = "reservation_end_date", nullable = false)
-    private LocalDateTime reservationEndDate;
+    @Column(name = "is_transaction_closed")
+    private Boolean isTransactionClosed;
 
     @Override
     public final boolean equals(Object o) {
@@ -35,7 +32,7 @@ public class CustomerRoomReservation extends BaseEntity {
         Class<?> oEffectiveClass = o instanceof HibernateProxy ? ((HibernateProxy) o).getHibernateLazyInitializer().getPersistentClass() : o.getClass();
         Class<?> thisEffectiveClass = this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass() : this.getClass();
         if (thisEffectiveClass != oEffectiveClass) return false;
-        CustomerRoomReservation that = (CustomerRoomReservation) o;
+        CustomerRoomReservationPayment that = (CustomerRoomReservationPayment) o;
         return getId() != null && Objects.equals(getId(), that.getId());
     }
 
@@ -48,10 +45,10 @@ public class CustomerRoomReservation extends BaseEntity {
     public String toString() {
         return getClass().getSimpleName() + "(" +
                 "id = " + getId() + ", " +
-                "room = " + getRoom() + ", " +
-                "customer = " + getCustomer() + ", " +
-                "reservationStartDate = " + getReservationStartDate() + ", " +
-                "reservationEndDate = " + getReservationEndDate() + ", " +
+                "customerRoomReservation = " + getCustomerRoomReservation() + ", " +
+                "transactionId = " + getTransactionId() + ", " +
+                "isRefund = " + getIsRefund() + ", " +
+                "isTransactionClosed = " + getIsTransactionClosed() + ", " +
                 "dateCreate = " + getDateCreate() + ", " +
                 "dateUpdate = " + getDateUpdate() + ", " +
                 "createdByMember = " + getCreatedByMember() + ", " +

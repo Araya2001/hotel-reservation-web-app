@@ -5,28 +5,22 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.proxy.HibernateProxy;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Getter
 @Setter
 @Entity
-@Table(name = "customer_room_reservation")
-public class CustomerRoomReservation extends BaseEntity {
+@Table(name = "customer_room_reservation_feedback")
+public class CustomerRoomReservationFeedback extends BaseEntity {
     @ManyToOne(cascade = CascadeType.ALL, optional = false)
-    @JoinColumn(name = "room_id", nullable = false)
-    private Room room;
+    @JoinColumn(name = "customer_room_reservation_id", nullable = false)
+    private CustomerRoomReservation customerRoomReservation;
 
-    @ManyToOne(cascade = CascadeType.ALL, optional = false)
-    @JoinColumn(name = "customer_id", nullable = false)
-    private Customer customer;
+    @Column(name = "feedback", length = 1024)
+    private String feedback;
 
-    @Column(name = "reservation_start_date", nullable = false)
-    private LocalDateTime reservationStartDate;
-
-    @Column(name = "reservation_end_date", nullable = false)
-    private LocalDateTime reservationEndDate;
+    @Column(name = "rating_value", nullable = false)
+    private Double ratingValue;
 
     @Override
     public final boolean equals(Object o) {
@@ -35,7 +29,7 @@ public class CustomerRoomReservation extends BaseEntity {
         Class<?> oEffectiveClass = o instanceof HibernateProxy ? ((HibernateProxy) o).getHibernateLazyInitializer().getPersistentClass() : o.getClass();
         Class<?> thisEffectiveClass = this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass() : this.getClass();
         if (thisEffectiveClass != oEffectiveClass) return false;
-        CustomerRoomReservation that = (CustomerRoomReservation) o;
+        CustomerRoomReservationFeedback that = (CustomerRoomReservationFeedback) o;
         return getId() != null && Objects.equals(getId(), that.getId());
     }
 
@@ -48,10 +42,9 @@ public class CustomerRoomReservation extends BaseEntity {
     public String toString() {
         return getClass().getSimpleName() + "(" +
                 "id = " + getId() + ", " +
-                "room = " + getRoom() + ", " +
-                "customer = " + getCustomer() + ", " +
-                "reservationStartDate = " + getReservationStartDate() + ", " +
-                "reservationEndDate = " + getReservationEndDate() + ", " +
+                "customerRoomReservation = " + getCustomerRoomReservation() + ", " +
+                "feedback = " + getFeedback() + ", " +
+                "ratingValue = " + getRatingValue() + ", " +
                 "dateCreate = " + getDateCreate() + ", " +
                 "dateUpdate = " + getDateUpdate() + ", " +
                 "createdByMember = " + getCreatedByMember() + ", " +
