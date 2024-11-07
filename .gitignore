@@ -38,3 +38,5 @@ out/
 .vscode/
 
 vaadin-generated
+
+src/main/frontend
