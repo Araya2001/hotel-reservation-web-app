@@ -26,12 +26,6 @@ public abstract class BaseEntity {
     @UpdateTimestamp
     private Instant dateUpdate;
 
-    @Column(name = "created_by_member_id", nullable = false)
-    private UUID createdByMember;
-
-    @Column(name = "updated_by_member_id", nullable = false)
-    private UUID updatedByMember;
-
     @Column(name = "is_deleted", nullable = false)
     private Boolean isDeleted = false;
 

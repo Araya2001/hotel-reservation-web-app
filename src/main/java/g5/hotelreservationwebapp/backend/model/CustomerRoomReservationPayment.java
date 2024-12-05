@@ -51,8 +51,6 @@ public class CustomerRoomReservationPayment extends BaseEntity {
                 "isTransactionClosed = " + getIsTransactionClosed() + ", " +
                 "dateCreate = " + getDateCreate() + ", " +
                 "dateUpdate = " + getDateUpdate() + ", " +
-                "createdByMember = " + getCreatedByMember() + ", " +
-                "updatedByMember = " + getUpdatedByMember() + ", " +
                 "isDeleted = " + getIsDeleted() + ")";
     }
 }

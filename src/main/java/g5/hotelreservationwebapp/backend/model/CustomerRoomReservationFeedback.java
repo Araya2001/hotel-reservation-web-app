@@ -12,7 +12,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "customer_room_reservation_feedback")
 public class CustomerRoomReservationFeedback extends BaseEntity {
-    @ManyToOne(cascade = CascadeType.ALL, optional = false)
+    @ManyToOne(cascade = CascadeType.REFRESH, optional = false)
     @JoinColumn(name = "customer_room_reservation_id", nullable = false)
     private CustomerRoomReservation customerRoomReservation;
 
@@ -20,7 +20,7 @@ public class CustomerRoomReservationFeedback extends BaseEntity {
     private String feedback;
 
     @Column(name = "rating_value", nullable = false)
-    private Double ratingValue;
+    private Integer ratingValue;
 
     @Override
     public final boolean equals(Object o) {
@@ -47,8 +47,6 @@ public class CustomerRoomReservationFeedback extends BaseEntity {
                 "ratingValue = " + getRatingValue() + ", " +
                 "dateCreate = " + getDateCreate() + ", " +
                 "dateUpdate = " + getDateUpdate() + ", " +
-                "createdByMember = " + getCreatedByMember() + ", " +
-                "updatedByMember = " + getUpdatedByMember() + ", " +
                 "isDeleted = " + getIsDeleted() + ")";
     }
 }

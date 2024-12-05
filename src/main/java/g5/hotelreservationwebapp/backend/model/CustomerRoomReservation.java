@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.proxy.HibernateProxy;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -14,11 +13,11 @@ import java.util.Objects;
 @Entity
 @Table(name = "customer_room_reservation")
 public class CustomerRoomReservation extends BaseEntity {
-    @ManyToOne(cascade = CascadeType.ALL, optional = false)
+    @ManyToOne(cascade = CascadeType.REFRESH, optional = false)
     @JoinColumn(name = "room_id", nullable = false)
     private Room room;
 
-    @ManyToOne(cascade = CascadeType.ALL, optional = false)
+    @ManyToOne(cascade = CascadeType.REFRESH, optional = false)
     @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
 
@@ -54,8 +53,6 @@ public class CustomerRoomReservation extends BaseEntity {
                 "reservationEndDate = " + getReservationEndDate() + ", " +
                 "dateCreate = " + getDateCreate() + ", " +
                 "dateUpdate = " + getDateUpdate() + ", " +
-                "createdByMember = " + getCreatedByMember() + ", " +
-                "updatedByMember = " + getUpdatedByMember() + ", " +
                 "isDeleted = " + getIsDeleted() + ")";
     }
 }

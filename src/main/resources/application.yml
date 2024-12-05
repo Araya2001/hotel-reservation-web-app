@@ -5,7 +5,7 @@ spring:
   application:
     name: hotel-reservation-web-app
   datasource:
-    url: jdbc:h2:mem:testdb
+    url: jdbc:h2:./data/test-db
     driver-class-name: org.h2.Driver
     username: sa
     password: password

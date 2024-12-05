@@ -12,7 +12,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "customer_room_reservation_details")
 public class CustomerRoomReservationDetails extends BaseEntity {
-    @ManyToOne(cascade = CascadeType.ALL, optional = false)
+    @ManyToOne(cascade = CascadeType.REFRESH, optional = false)
     @JoinColumn(name = "customer_room_reservation_id", nullable = false)
     private CustomerRoomReservation customerRoomReservation;
 
@@ -47,8 +47,6 @@ public class CustomerRoomReservationDetails extends BaseEntity {
                 "detailValue = " + getDetailValue() + ", " +
                 "dateCreate = " + getDateCreate() + ", " +
                 "dateUpdate = " + getDateUpdate() + ", " +
-                "createdByMember = " + getCreatedByMember() + ", " +
-                "updatedByMember = " + getUpdatedByMember() + ", " +
                 "isDeleted = " + getIsDeleted() + ")";
     }
 }

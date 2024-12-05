@@ -18,7 +18,7 @@ public class CustomerContact extends BaseEntity {
     @Column(name = "communication_type", nullable = false)
     private String communicationType;
 
-    @ManyToOne(cascade = CascadeType.ALL, optional = false)
+    @ManyToOne(cascade = CascadeType.REFRESH, optional = false)
     @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
 
@@ -47,8 +47,6 @@ public class CustomerContact extends BaseEntity {
                 "customer = " + getCustomer() + ", " +
                 "dateCreate = " + getDateCreate() + ", " +
                 "dateUpdate = " + getDateUpdate() + ", " +
-                "createdByMember = " + getCreatedByMember() + ", " +
-                "updatedByMember = " + getUpdatedByMember() + ", " +
                 "isDeleted = " + getIsDeleted() + ")";
     }
 }

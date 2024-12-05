@@ -19,7 +19,7 @@ public class RoomDetails extends BaseEntity {
     @Column(name = "detail_value", nullable = false)
     private String detailValue;
 
-    @ManyToOne(cascade = CascadeType.ALL, optional = false)
+    @ManyToOne(cascade = CascadeType.REFRESH, optional = false)
     @JoinColumn(name = "room_id", nullable = false)
     private Room room;
 
@@ -48,8 +48,6 @@ public class RoomDetails extends BaseEntity {
                 "room = " + getRoom() + ", " +
                 "dateCreate = " + getDateCreate() + ", " +
                 "dateUpdate = " + getDateUpdate() + ", " +
-                "createdByMember = " + getCreatedByMember() + ", " +
-                "updatedByMember = " + getUpdatedByMember() + ", " +
                 "isDeleted = " + getIsDeleted() + ")";
     }
 }
